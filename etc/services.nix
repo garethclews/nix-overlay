@@ -3,6 +3,13 @@
   services = {
     pasystray.enable = true;
 
+    mbsync = {
+      enable = true;
+      frequency = "*:0/15";
+      preExec = "${pkgs.afew}/bin/afew -C ~/.notmuch-config --move-mails --verbose";
+      postExec = "${pkgs.notmuch}/bin/notmuch new";
+    };
+
     gnome-keyring = {
       enable = true;
     };

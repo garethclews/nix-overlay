@@ -18,6 +18,8 @@
     ./etc/services.nix
     ./etc/programs.nix
 
+    # private... stuff
+    ./etc/private/mail.nix
   ];
 
   nixpkgs.config.allowUnfree = true;

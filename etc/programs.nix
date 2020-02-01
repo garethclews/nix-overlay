@@ -20,6 +20,23 @@
       enableIcedTea = false;
     };
 
+    # mail :D
+    msmtp.enable = true;
+    mbsync.enable = true;
+    notmuch = {
+      enable = true;
+      hooks = {
+        postNew =
+          "${pkgs.afew}/bin/afew -C ~/.notmuch-config --tag --new --verbose";
+      };
+      new = {
+        ignore = [ "trash" "*.json" ];
+        tags = [ "new" ];
+      };
+      search.excludeTags = [ "trash" "deleted" "spam" ];
+      maildir.synchronizeFlags = true;
+    };
+
     tmux = {
       enable = true;
       package = pkgs.tmux;
