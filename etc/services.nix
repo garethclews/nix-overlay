@@ -4,7 +4,7 @@
     pasystray.enable = true;
 
     mbsync = {
-      enable = true;
+      enable = false;
       frequency = "*:0/15";
       preExec = "${pkgs.afew}/bin/afew -C ~/.notmuch-config --move-mails --verbose";
       postExec = "${pkgs.notmuch}/bin/notmuch new";

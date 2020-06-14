@@ -30,11 +30,11 @@ in {
           fixed-center = true;
           line-size = "2";
 
-          # tray-position = "left";
+          # tray-position = "center";
           # tray-detached = true;
           # tray-maxsize = 16;
           # tray-background = colours.basebg;
-          # tray-offset-x = 515;
+          # tray-offset-x = 0;
           # tray-offset-y = 0;
           # tray-padding = 1;
 
@@ -44,7 +44,7 @@ in {
           cursor-click = "pointer";
           cursor-scroll = "ns-resize";
 
-          modules-left = "workspaces layout volume spotify";
+          modules-left = "workspaces layout volume tray mode spotify";
           modules-center = "";
           modules-right = "date caffeine lock userswitch powermenu";
         };
@@ -71,8 +71,6 @@ in {
             "${pkgs.playerctl}/bin/playerctl --follow metadata --format '%{F${colours.basefg}}{{artist}}%{F${colours.base11}}  %{F${colours.base13}}{{title}}%{F-}'";
           tail = true;
           format = "<label>";
-          # format-background = colours.base14; # closest to spotify green
-          # format-foreground = colours.basebg;
           format-background = colours.basebg;
           format-foreground = colours.base14;
           format-padding = 3;
@@ -96,10 +94,34 @@ in {
           format-padding = 2;
         };
 
+        "module/mode" = {
+          type = "custom/script";
+          exec = "tail -F /tmp/xmonad-events";
+          exec-if = "[ -p /tmp/xmonad-events ]";
+          tail = true;
+
+          format = " <label>";
+          format-background = colours.basebg-alt;
+          format-foreground = colours.basebg;
+          format-padding = 2;
+        };
+
+        "module/tray" = {
+          type = "custom/script";
+          exec = "tail -F /tmp/xmonad-states";
+          exec-if = "[ -p /tmp/xmonad-states ]";
+          tail = true;
+
+          format = "   <label>";
+          format-background = colours.basebg-alt;
+          format-foreground = colours.basebg;
+          format-padding = 1;
+        };
+
         "module/caffeine" = {
           type = "custom/script";
-          exec = "tail -F /tmp/caffeine";
-          exec-if = "[ -p /tmp/caffeine ]";
+          exec = "tail -F /tmp/xmonad-caffeine";
+          exec-if = "[ -p /tmp/xmonad-caffeine ]";
           tail = true;
 
           click-left = "~/.scripts/caffeine";
@@ -114,12 +136,12 @@ in {
         "module/volume" = {
           type = "internal/pulseaudio";
           # sink = "alsa_output.pci-0000_01_00.1.hdmi-stereo-extra2";
-          format-volume = "<ramp-volume> <label-volume>  ";
+          format-volume = "<ramp-volume> <label-volume>";
           format-volume-padding = 2;
           format-volume-background = colours.basebg-alt;
           format-volume-foreground = colours.basefg-alt;
           label-volume = "%percentage:3%%";
-          label-muted = "%{F${colours.base10}}%{F-} mute  ";
+          label-muted = "%{F${colours.base10}}%{F-} mute";
           label-muted-foreground = colours.basefg-alt;
           label-muted-background = colours.basebg-alt;
           label-muted-padding = 2;

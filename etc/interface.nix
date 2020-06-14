@@ -1,16 +1,18 @@
 { pkgs, config, ... }: {
   gtk = {
+    enable = true;
+
     font = {
-      package = pkgs.fira;
-      name = "Fira Sans 12";
+      package = pkgs.overpass;
+      name = "Overpass 11";
     };
-    iconTheme = {
-      package = pkgs.paper-icon-theme;
-      name = "Paper";
-    };
+    # iconTheme = {
+    #   package = pkgs.paper-icon-theme;
+    #   name = "Paper";
+    # };
     theme = {
-      package = pkgs.nordic;
-      name = "Nordic";
+      package = import ./pkgs/horizon/default.nix;
+      name = "Horizon";
     };
   };
 }

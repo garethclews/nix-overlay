@@ -16,15 +16,13 @@
     firefox = {
       enable = true;
       enableAdobeFlash = false;
-      enableGoogleTalk = false;
-      enableIcedTea = false;
     };
 
     # mail :D
-    msmtp.enable = true;
-    mbsync.enable = true;
+    msmtp.enable = false;
+    mbsync.enable =false;
     notmuch = {
-      enable = true;
+      enable = false;
       hooks = {
         postNew =
           "${pkgs.afew}/bin/afew -C ~/.notmuch-config --tag --new --verbose";
@@ -38,7 +36,7 @@
     };
 
     tmux = {
-      enable = true;
+      enable = false;
       package = pkgs.tmux;
       newSession = true;
       plugins = with pkgs; [
