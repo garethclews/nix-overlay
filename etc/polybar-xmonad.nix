@@ -12,7 +12,8 @@ in {
         pulseSupport = true;
       };
 
-      script = "~/.scripts/polybar/launch";
+      # script = "~/.scripts/polybar/launch";
+      script = "";
 
       # - bars ------------------------------------------------------------------------
       config = {
@@ -68,7 +69,7 @@ in {
         "module/spotify" = {
           type = "custom/script";
           exec =
-            "${pkgs.playerctl}/bin/playerctl --follow metadata --format '%{F${colours.basefg}}{{artist}}%{F${colours.base11}}  %{F${colours.base13}}{{title}}%{F-}'";
+            "${pkgs.playerctl}/bin/playerctl --follow metadata --format '%{F${colours.basefg}}{{artist}}%{F${colours.base11}}    %{F${colours.base13}}{{title}}%{F-}' 2>/dev/null";
           tail = true;
           format = "<label>";
           format-background = colours.basebg;
@@ -77,7 +78,7 @@ in {
 
           click-left = "wmctrl -x -a spotify";
 
-          label = "  %output%";
+          label = "%{T5}   %output%%{T-}";
         };
 
         "module/workspaces" = {
@@ -156,8 +157,18 @@ in {
           label-padding = 2;
           label-background = colours.basebg;
           label-foreground = colours.basefg-alt;
-          time = "%{F${colours.base15}}%{F-} %H:%M";
-          time-alt = "%{F${colours.base15}}%{F-} %Y-%m-%d";
+          time = "%{F${colours.base15}}%{F-} %{T5}%H:%M%{T-}";
+          time-alt = "%{F${colours.base15}}%{F-} %{T5}%Y-%m-%d%{T-}";
+        };
+
+        "module/clock" = {
+          type = "internal/date";
+          interval = 30;
+          label = "%time%";
+          label-padding = 10;
+          label-background = colours.basebg-alt;
+          label-foreground = colours.basefg;
+          time = "%{T6}%H:%M%{T-}";
         };
 
         "module/powermenu" = {

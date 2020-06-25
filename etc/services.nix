@@ -1,18 +1,8 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   services = {
     pasystray.enable = true;
 
-    mbsync = {
-      enable = false;
-      frequency = "*:0/15";
-      preExec = "${pkgs.afew}/bin/afew -C ~/.notmuch-config --move-mails --verbose";
-      postExec = "${pkgs.notmuch}/bin/notmuch new";
-    };
-
-    gnome-keyring = {
-      enable = true;
-    };
+    gnome-keyring = { enable = true; };
 
     gpg-agent = {
       enable = true;
@@ -43,6 +33,9 @@
       timeout = 1;
     };
 
-    emacs.enable = true;
+    emacs = {
+      enable = false;
+      socketActivation.enable = true;
+    };
   };
 }

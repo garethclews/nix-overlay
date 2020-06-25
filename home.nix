@@ -1,25 +1,20 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  home.stateVersion = "19.09";
+  home.stateVersion = "20.03";
 
   imports = [
     # glitz
-    ./etc/awesome.nix
-    ./etc/compton.nix
     ./etc/dunst.nix
-    ./etc/interface.nix
+    ./etc/picom.nix
     ./etc/polybar.nix
     ./etc/xresources.nix
 
     # general config
-    ./etc/ext.nix
     ./etc/services.nix
     ./etc/programs.nix
 
     # private... stuff
-    # ./etc/private/mail.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
