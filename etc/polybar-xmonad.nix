@@ -45,12 +45,28 @@ in {
           cursor-click = "pointer";
           cursor-scroll = "ns-resize";
 
-          modules-left = "workspaces layout volume tray mode spotify";
+          modules-left = "workspaces layout volume mode music";
           modules-center = "";
-          modules-right = "date caffeine lock userswitch powermenu";
+          modules-right = "date wincontrol caffeine lock userswitch powermenu";
         };
 
         # modules ---------------------------------------------------------------------
+
+        "module/wincontrol" = {
+          type = "custom/script";
+          exec = "tail -f /tmp/xmonad-curwin";
+          exec-if = "[ -p /tmp/xmonad-curwin ]";
+          tail = true;
+
+          format = "<label>";
+          format-background = colours.basebg-alt;
+          format-foreground = colours.basefg-alt;
+          format-padding = 2;
+
+          click-left = "sleep 0.1; xdotool key Super w c";
+
+          label = " %output%";
+        };
 
         "module/layout" = {
           type = "custom/script";
@@ -63,10 +79,12 @@ in {
           format-foreground = colours.basefg-alt;
           format-padding = 1;
 
+          click-left = "sleep 0.1; xdotool key Super space";
+
           label = "%output%";
         };
 
-        "module/spotify" = {
+        "module/music" = {
           type = "custom/script";
           exec =
             "${pkgs.playerctl}/bin/playerctl --follow metadata --format '%{F${colours.basefg}}{{artist}}%{F${colours.base11}}    %{F${colours.base13}}{{title}}%{F-}' 2>/dev/null";
@@ -76,9 +94,9 @@ in {
           format-foreground = colours.base14;
           format-padding = 3;
 
-          click-left = "wmctrl -x -a spotify";
+          click-left = "wmctrl -x -a Plexamp";
 
-          label = "%{T5}   %output%%{T-}";
+          label = "%{T5}   %output%%{T-}";
         };
 
         "module/workspaces" = {
@@ -130,7 +148,7 @@ in {
           format = "<label>";
           format-background = colours.basebg-alt;
           format-foreground = colours.base02;
-          label = "   %output% ";
+          label = "  %output% ";
           content-padding = 3;
         };
 
@@ -157,8 +175,8 @@ in {
           label-padding = 2;
           label-background = colours.basebg;
           label-foreground = colours.basefg-alt;
-          time = "%{F${colours.base15}}%{F-} %{T5}%H:%M%{T-}";
-          time-alt = "%{F${colours.base15}}%{F-} %{T5}%Y-%m-%d%{T-}";
+          time = "%{F${colours.base15}}%{F-} %H:%M%";
+          time-alt = "%{F${colours.base15}}%{F-} %Y-%m-%d%";
         };
 
         "module/clock" = {

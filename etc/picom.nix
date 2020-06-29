@@ -10,14 +10,14 @@
       "window_type = 'utility'"
       "window_type = 'popup_menu'"
       "window_type = 'dropdown_menu'"
-      "class_g = 'dzen2'"
-      "name    = 'dzen title'"
+      # "class_g = 'dzen2'"
+      # "name    = 'dzen title'"
     ];
-    shadowOpacity = "0.3";
-    shadowOffsets = [ (-3) (-3) ];
+    shadowOpacity = "0.4";
+    shadowOffsets = [ (-5) (-5) ];
 
     extraOptions = ''
-      shadow-radius   = 3;
+      shadow-radius   = 5;
     '';
   };
 }
