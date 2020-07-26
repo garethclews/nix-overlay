@@ -31,14 +31,6 @@ in {
           fixed-center = true;
           line-size = "2";
 
-          # tray-position = "center";
-          # tray-detached = true;
-          # tray-maxsize = 16;
-          # tray-background = colours.basebg;
-          # tray-offset-x = 0;
-          # tray-offset-y = 0;
-          # tray-padding = 1;
-
           background = colours.basebg;
           foreground = colours.basefg;
 
@@ -47,25 +39,48 @@ in {
 
           modules-left = "workspaces layout volume mode music";
           modules-center = "";
-          modules-right = "date wincontrol caffeine lock userswitch powermenu";
+          modules-right =
+            "date wc-copy wc-full wc-kill caffeine lock userswitch powermenu";
         };
 
         # modules ---------------------------------------------------------------------
-
-        "module/wincontrol" = {
+        "module/wc-copy" = {
           type = "custom/script";
-          exec = "tail -f /tmp/xmonad-curwin";
-          exec-if = "[ -p /tmp/xmonad-curwin ]";
+          exec = "tail -f /tmp/xmonad-copy";
+          exec-if = "[ -p /tmp/xmonad-copy ]";
           tail = true;
 
           format = "<label>";
-          format-background = colours.basebg-alt;
-          format-foreground = colours.basefg-alt;
-          format-padding = 2;
+          format-background = colours.basebg;
+          format-padding = 1;
 
-          click-left = "sleep 0.1; xdotool key Super w c";
+          label = "%output%";
+        };
 
-          label = " %output%";
+        "module/wc-full" = {
+          type = "custom/script";
+          exec = "tail -f /tmp/xmonad-full";
+          exec-if = "[ -p /tmp/xmonad-full ]";
+          tail = true;
+
+          format = "<label>";
+          format-background = colours.basebg;
+          format-padding = 1;
+
+          label = "%output%";
+        };
+
+        "module/wc-kill" = {
+          type = "custom/script";
+          exec = "tail -f /tmp/xmonad-kill";
+          exec-if = "[ -p /tmp/xmonad-kill ]";
+          tail = true;
+
+          format = "<label>";
+          format-background = colours.basebg;
+          format-padding = 1;
+
+          label = "%output% ";
         };
 
         "module/layout" = {
@@ -94,7 +109,8 @@ in {
           format-foreground = colours.base14;
           format-padding = 3;
 
-          click-left = "wmctrl -x -a Plexamp";
+          # click-left = "wmctrl -x -a Plexamp";
+          click-left = "wmctrl -x -a spotify";
 
           label = "%{T5}   %output%%{T-}";
         };
@@ -125,18 +141,6 @@ in {
           format-padding = 2;
         };
 
-        "module/tray" = {
-          type = "custom/script";
-          exec = "tail -F /tmp/xmonad-states";
-          exec-if = "[ -p /tmp/xmonad-states ]";
-          tail = true;
-
-          format = "   <label>";
-          format-background = colours.basebg-alt;
-          format-foreground = colours.basebg;
-          format-padding = 1;
-        };
-
         "module/caffeine" = {
           type = "custom/script";
           exec = "tail -F /tmp/xmonad-caffeine";
@@ -148,7 +152,7 @@ in {
           format = "<label>";
           format-background = colours.basebg-alt;
           format-foreground = colours.base02;
-          label = "  %output% ";
+          label = "   %output% ";
           content-padding = 3;
         };
 
@@ -171,22 +175,12 @@ in {
         "module/date" = {
           type = "internal/date";
           interval = 30;
-          label = "%time%  ";
+          label = "%time%";
           label-padding = 2;
           label-background = colours.basebg;
           label-foreground = colours.basefg-alt;
-          time = "%{F${colours.base15}}%{F-} %H:%M%";
-          time-alt = "%{F${colours.base15}}%{F-} %Y-%m-%d%";
-        };
-
-        "module/clock" = {
-          type = "internal/date";
-          interval = 30;
-          label = "%time%";
-          label-padding = 10;
-          label-background = colours.basebg-alt;
-          label-foreground = colours.basefg;
-          time = "%{T6}%H:%M%{T-}";
+          time = "%{F${colours.base15}}%{F-} %{T5}%H:%M%{T-}";
+          time-alt = "%{F${colours.base15}}%{F-} %{T5}%Y-%m-%d%{T}";
         };
 
         "module/powermenu" = {

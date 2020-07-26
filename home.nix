@@ -24,7 +24,7 @@
     BROWSER = "firefox";
     LC_CTYPE = "en_GB.UTF-8";
     PAGER = "less";
-    TERM = "kitty";
+    TERM = "termite";
   };
 
   systemd.user.startServices = true;

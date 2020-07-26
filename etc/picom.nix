@@ -1,7 +1,8 @@
 { config, lib, pkgs, ... }: {
   services.picom = {
     enable = true;
-    backend = "glx";
+    # backend = "glx";
+    backend = "xr_glx_hybrid";
 
     shadow = true;
     shadowExclude = [
@@ -10,14 +11,12 @@
       "window_type = 'utility'"
       "window_type = 'popup_menu'"
       "window_type = 'dropdown_menu'"
-      # "class_g = 'dzen2'"
-      # "name    = 'dzen title'"
     ];
-    shadowOpacity = "0.4";
+    shadowOpacity = "0.3";
     shadowOffsets = [ (-5) (-5) ];
 
     extraOptions = ''
-      shadow-radius   = 5;
+      shadow-radius   = 8;
     '';
   };
 }
