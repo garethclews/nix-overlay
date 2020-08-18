@@ -20,7 +20,7 @@ in {
 
         # XMONAD #
         "bar/xmonad" = fonts // {
-          monitor = "DP-4";
+          monitor = "HDMI-2";
           override-redirect = false;
 
           enable-ipc = true;

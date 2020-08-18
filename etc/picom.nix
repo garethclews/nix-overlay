@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }: {
   services.picom = {
-    enable = true;
+    enable = false;
     # backend = "glx";
     backend = "xr_glx_hybrid";
 
@@ -13,7 +13,7 @@
       "window_type = 'dropdown_menu'"
     ];
     shadowOpacity = "0.3";
-    shadowOffsets = [ (-5) (-5) ];
+    shadowOffsets = [ (0) (0) ];
 
     extraOptions = ''
       shadow-radius   = 8;
