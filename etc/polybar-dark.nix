@@ -38,9 +38,9 @@ in {
           cursor-scroll = "ns-resize";
 
           modules-left = "workspaces layout volume mode music";
-          modules-center = "";
+          modules-center = "date";
           modules-right =
-            "date wc-copy wc-full wc-kill caffeine lock userswitch powermenu";
+            "wc-copy wc-full wc-kill caffeine lock userswitch powermenu";
         };
 
         # modules ---------------------------------------------------------------------
@@ -179,8 +179,9 @@ in {
           label-padding = 2;
           label-background = colours.basebg;
           label-foreground = colours.basefg-alt;
-          time = "%{F${colours.base15}}%{F-} %{T5}%H:%M%{T-}";
-          time-alt = "%{F${colours.base15}}%{F-} %{T5}%Y-%m-%d%{T}";
+          # time = "%{F${colours.base15}}%{F-} %{T5}%H:%M%{T-}";
+          time = "%{T5}%H:%M%{T-}";
+          # time-alt = "%{F${colours.base15}}%{F-} %{T5}%Y-%m-%d%{T}";
         };
 
         "module/powermenu" = {
