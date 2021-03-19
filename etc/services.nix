@@ -15,15 +15,16 @@
       latitude = "51.7967";
       longitude = "-3.2093";
       tray = true;
-      brightness = {
-        day = "1";
-        night = "1";
+      settings = {
+        redshift = {
+          brightness-day = "1";
+          brightness-night = "1";
+        };
       };
       temperature = {
         night = 3500;
         day = 6500;
       };
-      extraOptions = [ "transition = 1;" ];
     };
 
     unclutter = {

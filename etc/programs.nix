@@ -15,10 +15,7 @@
       enableZshIntegration = true;
     };
 
-    firefox = {
-      enable = true;
-      enableAdobeFlash = false;
-    };
+    firefox = { enable = true; };
 
     termite = {
       enable = true;

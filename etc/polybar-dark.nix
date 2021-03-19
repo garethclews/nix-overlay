@@ -16,11 +16,11 @@ in {
       script = "";
 
       # - bars ------------------------------------------------------------------------
-      config = {
+      settings = {
 
         # XMONAD #
         "bar/xmonad" = fonts // {
-          monitor = "HDMI-2";
+          monitor = "DP-2";
           override-redirect = false;
 
           enable-ipc = true;
@@ -38,9 +38,9 @@ in {
           cursor-scroll = "ns-resize";
 
           modules-left = "workspaces layout volume mode music";
-          modules-center = "date";
+          modules-center = "";
           modules-right =
-            "wc-copy wc-full wc-kill caffeine lock userswitch powermenu";
+            "date wc-copy wc-full wc-kill caffeine lock userswitch powermenu";
         };
 
         # modules ---------------------------------------------------------------------
@@ -102,7 +102,7 @@ in {
         "module/music" = {
           type = "custom/script";
           exec =
-            "${pkgs.playerctl}/bin/playerctl --follow metadata --format '%{F${colours.basefg}}{{artist}}%{F${colours.base11}}    %{F${colours.base13}}{{title}}%{F-}' 2>/dev/null";
+            "${pkgs.playerctl}/bin/playerctl -p spotify --follow metadata --format '%{F${colours.basefg}}{{artist}}%{F${colours.base11}}    %{F${colours.base13}}{{title}}%{F-}' 2>/dev/null";
           tail = true;
           format = "<label>";
           format-background = colours.basebg;
@@ -179,9 +179,9 @@ in {
           label-padding = 2;
           label-background = colours.basebg;
           label-foreground = colours.basefg-alt;
-          # time = "%{F${colours.base15}}%{F-} %{T5}%H:%M%{T-}";
-          time = "%{T5}%H:%M%{T-}";
-          # time-alt = "%{F${colours.base15}}%{F-} %{T5}%Y-%m-%d%{T}";
+          time = "%{F${colours.base15}}%{F-} %{T5}%H:%M%{T-}";
+          # time = "%{T5}%H:%M%{T-}";
+          time-alt = "%{F${colours.base15}}%{F-} %{T5}%Y-%m-%d%{T-}";
         };
 
         "module/powermenu" = {
