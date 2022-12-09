@@ -11,11 +11,11 @@
       "window_type = 'popup_menu'"
       "window_type = 'dropdown_menu'"
     ];
-    shadowOpacity = "0.15";
+    shadowOpacity = 0.15;
     shadowOffsets = [ (-5) (-5) ];
+    fade = true;
+    fadeDelta = 5;
 
-    extraOptions = ''
-      shadow-radius   = 5;
-    '';
+    settings = { shadow-radius = 5; };
   };
 }

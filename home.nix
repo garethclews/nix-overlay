@@ -1,7 +1,7 @@
 { config, pkgs, ... }: {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  home.stateVersion = "20.03";
+  home.stateVersion = "21.11";
 
   imports = [
     # glitz
@@ -19,12 +19,16 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  home.sessionVariables = {
-    EDITOR = "emacs";
-    BROWSER = "firefox";
-    LC_CTYPE = "en_GB.UTF-8";
-    PAGER = "less";
-    TERM = "termite";
+  home = {
+    username = "aloysius";
+    homeDirectory = /home/aloysius;
+    sessionVariables = {
+      EDITOR = "emacs";
+      BROWSER = "firefox";
+      LC_CTYPE = "en_GB.UTF-8";
+      PAGER = "less";
+      TERM = "kitty";
+    };
   };
 
   systemd.user.startServices = true;

@@ -11,9 +11,12 @@ in {
 
     settings = {
       global = {
-        font = "Overpass 12";
+        font = "M+ 1c 12";
         markup = "full";
-        format = "<b><span foreground='${colours.base11}'>%a</span></b>\n<b>%s</b>\n<span style='font-style=italic;'>%b</span>";
+        format = ''
+          <b><span foreground='${colours.base11}'>%a</span></b>
+          <b>%s</b>
+          <span style='font-style=italic;'>%b</span>'';
         sort = "yes";
         indicate_hidden = "yes";
         alignment = "left";
@@ -56,21 +59,21 @@ in {
       };
 
       urgency_low = {
-        background = colours.basebg-alt;
+        background = colours.base00; # bg-alt;
         foreground = colours.basefg;
         frame_color = colours.basebg;
         timeout = 4;
       };
 
       urgency_normal = {
-        background = colours.basebg-alt;
+        background = colours.base00; # bg-alt;
         foreground = colours.basefg;
         frame_color = colours.basebg;
         timeout = 6;
       };
 
       urgency_critical = {
-        background = colours.basebg;
+        background = colours.base00; # bg;
         foreground = colours.basefg;
         frame_color = colours.base11;
         timeout = 0;
